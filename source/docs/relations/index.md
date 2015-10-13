@@ -83,7 +83,7 @@ class User extends \Spot\Entity
         ];
     }
 
-    public static function relations(Mapper $mapper, Entity $entity)
+    public static function relations(MapperInterface $mapper, EntityInterface $entity)
     {
         return [
             'profile' => $mapper->hasOne($entity, 'Entity\User\Profile', 'user_id')
@@ -132,7 +132,7 @@ class Post extends \Spot\Entity
         ];
     }
 
-    public static function relations(Mapper $mapper, Entity $entity)
+    public static function relations(MapperInterface $mapper, EntityInterface $entity)
     {
         return [
             'user' => $mapper->belongsTo($entity, 'Entity\User', 'user_id')
@@ -181,7 +181,7 @@ class Post extends Spot\Entity
         ];
     }
 
-    public static function relations(Mapper $mapper, Entity $entity)
+    public static function relations(MapperInterface $mapper, EntityInterface $entity)
     {
         return [
             'comments' => $mapper->hasMany($entity, 'Entity\Comment', 'post_id')->order(['date_created' => 'ASC']),
@@ -248,7 +248,7 @@ class Post extends Spot\Entity
         ];
     }
 
-    public static function relations(Mapper $mapper, Entity $entity)
+    public static function relations(MapperInterface $mapper, EntityInterface $entity)
     {
         return [
             'tags' => $mapper->hasManyThrough($entity, 'Entity\Tag', 'Entity\PostTag', 'tag_id', 'post_id'),
